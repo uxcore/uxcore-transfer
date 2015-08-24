@@ -1,0 +1,1 @@
+{"version":3,"sources":["Transfer.less"],"names":[],"mappings":"AAAA;EACI,eAAA;;AADJ,WAEI;EACI,eAAA","file":"Transfer.css","sourcesContent":[".uxTransfer {\n    font-size: 16px;\n    .test {\n        font-size: 18px;\n    }\n}"],"sourceRoot":"/source/"}
