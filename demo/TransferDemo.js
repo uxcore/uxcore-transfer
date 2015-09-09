@@ -1,8 +1,8 @@
-import Transfer from '../src'
+let Transfer = require('../src'); 
 
-var mockData = [];
-var len = Math.random() * 10 + 10;
-for (var i = 0; i < len; i++) {
+let mockData = [];
+let len = Math.random() * 10 + 10;
+for (let i = 0; i < len; i++) {
     mockData.push({
         name: '内容' + (i + 1),
         value: (i + 1),
@@ -11,7 +11,7 @@ for (var i = 0; i < len; i++) {
     });
 }
 
-export default class TransferDemo extends React.Component {
+class TransferDemo extends React.Component {
     constructor(props){
         super(props);
     }
@@ -31,3 +31,5 @@ export default class TransferDemo extends React.Component {
 TransferDemo.displayName = 'TransferDemo';
 TransferDemo.defaultProps = {};
 TransferDemo.propTypes = {};
+
+module.exports = TransferDemo;

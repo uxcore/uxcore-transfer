@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-var update = React.addons.update;
+let update = React.addons.update;
 class Transfer extends React.Component {
     constructor(props){
         super(props);
@@ -10,7 +10,7 @@ class Transfer extends React.Component {
     }
 
     componentDidMount() {
-        var me = this;
+        let me = this;
     }
 
 
@@ -21,10 +21,10 @@ class Transfer extends React.Component {
      */
 
     _changeChosenData(arr1, arr2) {
-        var newArr1 = arr1.filter(function(item) {
+        let newArr1 = arr1.filter(function(item) {
             return !item.selected
         });
-        var newArr2 = arr2.concat(arr1.filter(function(item) {
+        let newArr2 = arr2.concat(arr1.filter(function(item) {
             return item.selected;
         }).map(function(item, index) {
             item.chosen = !item.chosen;
@@ -38,27 +38,27 @@ class Transfer extends React.Component {
     }
 
     _handleItemClick(e) {
-        var me = this;
-        var target = e.currentTarget;
-        var key = target.getAttribute('data-key');
-        var isChosen = JSON.parse(target.getAttribute('data-chosen'));
-        var newData = update(me.state[isChosen ? 'chosen' : 'unChosen'], {});
+        let me = this;
+        let target = e.currentTarget;
+        let key = target.getAttribute('data-key');
+        let isChosen = JSON.parse(target.getAttribute('data-chosen'));
+        let newData = update(me.state[isChosen ? 'chosen' : 'unChosen'], {});
         newData[key].selected = !newData[key].selected;
-        var newState = {};
+        let newState = {};
         newState[isChosen ? 'chosen' : 'unChosen'] = newData;
         me.setState(newState);
     }
 
     _handleButtonClick(e) {
-        var me = this;
-        var target = e.currentTarget;
-        var direction = target.getAttribute('data-direction');
+        let me = this;
+        let target = e.currentTarget;
+        let direction = target.getAttribute('data-direction');
         if (target.className.indexOf('enable') == -1) return;
-        var oldChosen = update(me.state['chosen'], {});
-        var oldUnChosen = update(me.state['unChosen'], {});
-        var newChosen = [];
-        var newUnChosen = [];
-        var newData = {}
+        let oldChosen = update(me.state['chosen'], {});
+        let oldUnChosen = update(me.state['unChosen'], {});
+        let newChosen = [];
+        let newUnChosen = [];
+        let newData = {}
         if (direction == 'left') {
             newData = me._changeChosenData(oldChosen, oldUnChosen);
             newChosen = newData.arr1;
@@ -80,7 +80,7 @@ class Transfer extends React.Component {
     }
 
     _renderItem(item, index) {
-        var me = this;
+        let me = this;
         window.me = me;
         return <li key={index} data-key={index} data-value={item.value} data-chosen={item.chosen} onClick={me._handleItemClick.bind(me)}>
                     <a className={classnames({
@@ -90,23 +90,23 @@ class Transfer extends React.Component {
     }
 
     _renderUnchosen() {
-        var me = this;
-        var arr = me.state.unChosen.filter(function(item) {
+        let me = this;
+        let arr = me.state.unChosen.filter(function(item) {
             return !item.chosen
         }).map(me._renderItem.bind(me));
         return arr;
     }
 
     _renderChosen() {
-        var me = this;
-        var arr = me.state.chosen.filter(function(item) {
+        let me = this;
+        let arr = me.state.chosen.filter(function(item) {
             return item.chosen;
         }).map(me._renderItem.bind(me));
         return arr;
     }
 
     render() {
-        var me = this;
+        let me = this;
         return (
             <div className="uxTransfer">
                 <table className="kuma-transfer-container">
