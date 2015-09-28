@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+let classnames = require('classnames');
 let update = React.addons.update;
 class Transfer extends React.Component {
     constructor(props){
@@ -74,7 +74,7 @@ class Transfer extends React.Component {
             chosen: newChosen,
             unChosen: newUnChosen
         }, function() {
-            me.props.onChange(me.state.chosen);
+            me.props.onChange(me.state);
         });
 
     }
