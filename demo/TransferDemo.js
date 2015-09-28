@@ -1,4 +1,5 @@
-let Transfer = require('../src'); 
+let Transfer = require('../src');
+let Button = require('uxcore-button'); 
 
 let mockData = [];
 let len = Math.random() * 10 + 10;
@@ -20,10 +21,17 @@ class TransferDemo extends React.Component {
         console.log(data);
     }
 
+    handleClick() {
+        this.refs.transfer.selectItems([2, 3]);
+    }
+
     render() {
         var me = this;
         return (
-            <Transfer data={mockData} onChange={me._handleChange.bind(me)}/>
+            <div>
+                <Transfer ref="transfer" data={mockData} onChange={me._handleChange.bind(me)}/>
+                <Button onClick={me.handleClick.bind(me)}>手动更改被选中的项</Button>
+            </div>
         );
     }
 }

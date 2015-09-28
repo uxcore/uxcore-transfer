@@ -54,11 +54,13 @@ http://uxcore.github.io/transfer/
 
 ### API
 
+* selectItems(arr): 使对应 value 的
+
 ### props
 
 |参数|类型|必需|默认值|说明|
 |---|----|---|----|
 |data|array|required|-|用于初始化 transfer 的数据，格式见 Usage，四项可以为空，但不能没有|
 |leftTitle|string|optional|'未选中的'|左侧标题|
-|leftTitle|string|optional|'已选中的'|右侧标题|
+|rightTitle|string|optional|'已选中的'|右侧标题|
 |onChange|func|optional|noop|选中情况变化时触发|

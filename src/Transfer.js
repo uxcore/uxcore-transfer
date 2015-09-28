@@ -20,6 +20,22 @@ class Transfer extends React.Component {
      * @param {array} arr2
      */
 
+     selectItems(arr) {
+        let me = this;
+        let data = update(me.state, {});
+        data.chosen.forEach((item, index) => {
+            if (arr.indexOf(item.value) != -1) {
+                item.selected = true;
+            }
+        });
+        data.unChosen.forEach((item, index) => {
+            if (arr.indexOf(item.value) != -1) {
+                item.selected = true;
+            }
+        });
+        me.setState(data);
+     }
+
     _changeChosenData(arr1, arr2) {
         let newArr1 = arr1.filter(function(item) {
             return !item.selected
