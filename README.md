@@ -50,7 +50,8 @@ class TransferDemo extends React.Component {
 ```
 
 ## demo
-http://uxcore.github.io/transfer/
+
+见 http://uxcore.github.io/uxcore/components/transfer/
 
 ## API
 
