@@ -3,6 +3,6 @@
  */
 import Demo from './TransferDemo';
 
-React.render((
+ReactDOM.render((
     <Demo />
 ), document.getElementById('UXCoreDemo'));

@@ -1,15 +1,33 @@
 /* alinw.transfer style module */
 
-.kuma-transfer-container {
+.kuma-uxtransfer-container {
     font-size: 12px;
     th {
         line-height: 30px;
+        > .title {
+            float: left;
+        }
+        > .searchBar {
+            float: right;
+            position: relative;
+            .kuma-icon {
+                position: absolute;
+                right: 8px;
+                color: #ccc;
+                top: 2px;
+                cursor:pointer;
+            }
+            .kuma-input {
+                border-radius: 2px;
+                width: 200px;
+            }
+        }
     }
     td {
         padding: 0;
         vertical-align: top;
 
-        .kuma-transfer-block {
+        .kuma-uxtransfer-block {
             width: 300px;
             height: 300px;
             padding: 5px 10px;
@@ -52,8 +70,7 @@
                 }
             }
         }
-
-        &.kuma-transfer-buttons {
+        &.kuma-uxtransfer-buttons {
             width: 90px;
             text-align: center;
             vertical-align: middle;
@@ -91,6 +108,19 @@
                     border-width: 6px 10px 6px 0;
                 }
             }
+        }
+    }
+}
+
+.uxTransfer.disabled {
+    .kuma-uxtransfer-buttons {
+        > a {
+            background: #ccc;
+        }
+    }
+    .kuma-uxtransfer-block {
+        a.selected {
+            background: #ccc;
         }
     }
 }

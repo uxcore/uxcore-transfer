@@ -18,35 +18,53 @@ $ npm run dev
 ## Usage
 
 ```
-let Transfer = require('../src'); 
-
+let Transfer = require("uxcore-transfer");
 let mockData = [];
-let len = Math.random() * 10 + 10;
+let len = Math.random() * 10 + 40;
 for (let i = 0; i < len; i++) {
     mockData.push({
-        name: '内容' + (i + 1), // 显示的文字
-        value: (i + 1), // 对应的 value
-        description: '内容' + (i + 1) + '的描述', // 描述
-        chosen: Math.random() * 2 > 1 // 是否是在已选中的
+        name: '内容' + (i + 1),
+        value: (i + 1),
+        description: '内容' + (i + 1) + '的描述',
+        chosen: Math.random() * 2 > 1,
+        keywords: ['neirong' + (i + 1)] // used in search & location
     });
 }
 
 class TransferDemo extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            disable: false
+        }
     }
 
     _handleChange(data) {
         console.log(data);
     }
 
+    handleClick() {
+        this.refs.transfer.selectItems([2, 3]);
+    }
+
+    handleClick2() {
+        this.setState({
+            disable: !this.state.disable
+        })
+    }
+
     render() {
         var me = this;
         return (
-            <Transfer data={mockData} onChange={me._handleChange.bind(me)}/>
+            <div>
+                <Transfer showSearch={true} disabled={me.state.disable} ref="transfer" data={mockData} onChange={me._handleChange.bind(me)}/>
+                <Button onClick={me.handleClick.bind(me)}>手动更改被选中的项</Button>
+                <Button onClick={me.handleClick2.bind(me)}>更改 mode</Button>
+            </div>
         );
     }
 }
+
 ```
 
 ## demo
@@ -64,6 +82,9 @@ class TransferDemo extends React.Component {
 |参数|类型|必需|默认值|说明|
 |---|----|---|----|---|
 |data|array|required|-|用于初始化 transfer 的数据，格式见 Usage，四项可以为空，但不能没有|
+|disabled|boolean|optional|false|是否启用 disable 模式|
+|showSearch|boolean|optional|true|是否显示搜索条|
+|searchPlaceholder|string|optional|定位输入内容||
 |leftTitle|string|optional|'未选中的'|左侧标题|
 |rightTitle|string|optional|'已选中的'|右侧标题|
 |onChange|func|optional|noop|选中情况变化时触发，返回选中和未选中的项|
