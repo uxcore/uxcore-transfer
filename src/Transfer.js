@@ -4,13 +4,27 @@ class Transfer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            chosen: props.data.filter(function(item) {return item.chosen}),
+            chosen: props.data.filter(function(item) {return !!item.chosen}),
             unChosen: props.data.filter(function(item) {return !item.chosen})
         }
     }
 
     componentDidMount() {
         let me = this;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let me = this;
+        if (!me._isEqual(nextProps.data, me.props.data)) {
+            me.setState({
+                chosen: me.props.data.filter(function(item) {return !!item.chosen}),
+                unChosen: me.props.data.filter(function(item) {return !item.chosen})
+            })
+        }
+    }
+
+    _isEqual(a, b) {
+        return JSON.stringify(a) == JSON.stringify(b)
     }
 
 
@@ -104,12 +118,12 @@ class Transfer extends React.Component {
         let newArr1 = arr1.filter(function(item) {
             return !item.selected
         });
-        let newArr2 = arr2.concat(arr1.filter(function(item) {
+        let newArr2 = arr1.filter(function(item) {
             return item.selected;
         }).map(function(item, index) {
             item.chosen = !item.chosen;
             return item; 
-        }));
+        }).concat(arr2);
 
         return {
             arr1: newArr1,
