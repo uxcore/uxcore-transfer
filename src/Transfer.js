@@ -230,7 +230,7 @@ class Transfer extends React.Component {
                             </th>
                             <th>&nbsp;</th>
                             <th className="fn-clear">
-                                <span className="title">{me.props.leftTitle}</span>
+                                <span className="title">{me.props.rightTitle}</span>
                                 {me._renderSearch("chosen")}
                             </th>
                         </tr>
