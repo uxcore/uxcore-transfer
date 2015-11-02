@@ -73,9 +73,9 @@ class TransferDemo extends React.Component {
 
 ## API
 
-* selectItems(arr): 使对应 value 的变成高亮状态 (selected)。  
-参数：
-        * arr `Array` 一个由 value 组成的数组。
+* selectItems(arr): 使对应 value 的变成高亮状态 (selected)。    
+参数：  
+    * arr `Array` 一个由 value 组成的数组。
 
 ## Props
 

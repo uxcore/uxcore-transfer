@@ -45,7 +45,7 @@
   "peerDependencies": {
     "react": ">=0.13.0"
   },
-  "author": "",
+  "author": "eternalsky",
   "contributors": [],
   "license": "MIT"
 }
