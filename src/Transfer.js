@@ -1,5 +1,6 @@
 let classnames = require('classnames');
-let update = React.addons.update;
+let deepcopy = require('deepcopy');
+
 class Transfer extends React.Component {
     constructor(props){
         super(props);
@@ -36,7 +37,7 @@ class Transfer extends React.Component {
 
     selectItems(arr) {
         let me = this;
-        let data = update(me.state, {});
+        let data = deepcopy(this.state);
         data.chosen.forEach((item, index) => {
             if (arr.indexOf(item.value) != -1) {
                 item.selected = true;
@@ -48,6 +49,14 @@ class Transfer extends React.Component {
             }
         });
         me.setState(data);
+    }
+
+    reset() {
+        let me = this;
+        me.setState({
+            chosen: me.props.data.filter(function(item) {return !!item.chosen}),
+            unChosen: me.props.data.filter(function(item) {return !item.chosen})
+        });
     }
 
     locateItem(value, position) {
@@ -137,7 +146,7 @@ class Transfer extends React.Component {
         let target = e.currentTarget;
         let key = target.getAttribute('data-key');
         let isChosen = JSON.parse(target.getAttribute('data-chosen'));
-        let newData = update(me.state[isChosen ? 'chosen' : 'unChosen'], {});
+        let newData = deepcopy(me.state[isChosen ? 'chosen' : 'unChosen']);
         newData[key].selected = !newData[key].selected;
         let newState = {};
         newState[isChosen ? 'chosen' : 'unChosen'] = newData;
@@ -150,8 +159,8 @@ class Transfer extends React.Component {
         let target = e.currentTarget;
         let direction = target.getAttribute('data-direction');
         if (target.className.indexOf('enable') == -1) return;
-        let oldChosen = update(me.state['chosen'], {});
-        let oldUnChosen = update(me.state['unChosen'], {});
+        let oldChosen = deepcopy(me.state['chosen']);
+        let oldUnChosen = deepcopy(me.state['unChosen']);
         let newChosen = [];
         let newUnChosen = [];
         let newData = {}
