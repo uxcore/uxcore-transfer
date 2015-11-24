@@ -3,7 +3,7 @@
 .kuma-uxtransfer-container {
     font-size: 12px;
     th {
-        padding-bottom: 15px;
+        padding: 15px 0;
         line-height: 30px;
         > .title {
             float: left;
@@ -17,32 +17,42 @@
             position: relative;
             .kuma-icon {
                 position: absolute;
-                right: 8px;
+                right: 28px;
                 color: #ccc;
                 top: 2px;
                 cursor:pointer;
             }
             .kuma-input {
-                border-radius: 2px;
-                width: 200px;
+                margin-right: 20px;
+                width: 160px;
+                border-radius: @input-radius;
             }
+        }
+        &.left-head, &.right-head {
+            background-color: #fff;
+            border: 1px solid @table-border;
         }
     }
     td {
         padding: 0;
         vertical-align: top;
 
+        &.left-block, &.right-block {
+            background-color: #fff;
+            border-width: 0 1px 1px;
+            border-style: solid;
+            border-color: @table-border;
+        }
+
         .kuma-uxtransfer-block {
             width: 300px;
             height: 300px;
             padding: 5px 10px;
-            border: 1px solid #d7d7d7;
-            border-radius: 2px;
-            background-color: #fff;
             overflow-x: hidden;
             overflow-y: auto;
             a {
                 display: block;
+                margin-bottom: 2px;
                 width: 280px;
                 height: 30px;
                 padding: 0 10px;
@@ -123,6 +133,7 @@
     .kuma-uxtransfer-buttons {
         > a {
             background: #ccc;
+            color: #fff;
         }
     }
     .kuma-uxtransfer-block {

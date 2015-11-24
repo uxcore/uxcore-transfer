@@ -119,7 +119,7 @@ class Transfer extends React.Component {
         if (e.keyCode == 13) {
             if (position == "unChosen") {
                 value = leftSearch.value;
-            }  
+            }
             else {
                 value = rightSearch.value;
             }
@@ -135,7 +135,7 @@ class Transfer extends React.Component {
             return item.selected;
         }).map(function(item, index) {
             item.chosen = !item.chosen;
-            return item; 
+            return item;
         }).concat(arr2);
 
         return {
@@ -193,7 +193,7 @@ class Transfer extends React.Component {
         window.me = me;
         return <li key={index} data-key={index} data-value={item.value} data-chosen={item.chosen} onClick={me._handleItemClick.bind(me)}>
                     <a className={classnames({
-                       "selected": !!item.selected 
+                       "selected": !!item.selected
                     })} href="javascript:;" title={item.description}>{item.name}</a>
                </li>
     }
@@ -237,12 +237,12 @@ class Transfer extends React.Component {
                 <table className="kuma-uxtransfer-container">
                     <thead className="kuma-uxtransfer-head">
                         <tr>
-                            <th className="fn-clear">
+                            <th className="fn-clear left-head">
                                 <span className="title">{me.props.leftTitle}</span>
                                 {me._renderSearch("unChosen")}
                             </th>
                             <th>&nbsp;</th>
-                            <th className="fn-clear">
+                            <th className="fn-clear right-head">
                                 <span className="title">{me.props.rightTitle}</span>
                                 {me._renderSearch("chosen")}
                             </th>
@@ -250,7 +250,7 @@ class Transfer extends React.Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
+                            <td className="left-block">
                                 <ul ref="leftBlock" className={classnames({
                                     "kuma-uxtransfer-block": true
                                 })}>
@@ -270,7 +270,7 @@ class Transfer extends React.Component {
                                     }) && !me.props.disabled
                                 })} onClick={me._handleButtonClick.bind(me)}></a>
                             </td>
-                            <td>
+                            <td className="right-block">
                                 <ul ref="rightBlock" className={classnames({
                                     "kuma-uxtransfer-block": true
                                 })}>
@@ -289,8 +289,8 @@ Transfer.displayName = "Transfer";
 Transfer.defaultProps = {
     searchPlaceholder: '定位输入内容',
     data: [],
-    leftTitle: '未选中的',
-    rightTitle: '已选中的',
+    leftTitle: '未选中',
+    rightTitle: '已选中',
     disabled: false,
     showSearch: true,
     onChange: function() {}

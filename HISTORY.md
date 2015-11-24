@@ -1,6 +1,7 @@
 # 0.2.3
 
 `NEW` add API `reset`
+`CHANGE` update style
 
 # 0.2.2
 
@@ -8,7 +9,7 @@
 
 # 0.2.1
 
-`FIX` fix bug when reset prop data. 
+`FIX` fix bug when reset prop data.
 
 # 0.2.0
 
