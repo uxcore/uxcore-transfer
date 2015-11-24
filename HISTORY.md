@@ -1,3 +1,7 @@
+# 0.2.3
+
+`NEW` add API `reset`
+
 # 0.2.2
 
 `FIX` fix title bug

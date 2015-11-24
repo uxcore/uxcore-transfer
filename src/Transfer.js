@@ -51,6 +51,10 @@ class Transfer extends React.Component {
         me.setState(data);
     }
 
+    /**
+     * 重置，取消所有的用户操作
+     */
+
     reset() {
         let me = this;
         me.setState({

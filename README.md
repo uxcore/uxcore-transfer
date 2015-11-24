@@ -76,6 +76,7 @@ class TransferDemo extends React.Component {
 * selectItems(arr): 使对应 value 的变成高亮状态 (selected)。    
 参数：  
     * arr `Array` 一个由 value 组成的数组。
+* reset(): 使 Transfer 回到与 data 对应的状态。
 
 ## Props
 
