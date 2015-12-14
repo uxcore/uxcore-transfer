@@ -1,3 +1,7 @@
+# 0.2.4
+
+`CHANGED` items which has just been moved will not be selected.
+
 # 0.2.3
 
 `NEW` add API `reset`

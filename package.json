@@ -1,6 +1,6 @@
 {
   "name": "uxcore-transfer",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "transfer ui component for react",
   "main": "src/index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "dependencies": {
     "classnames": "^2.1.2",
     "deepcopy": "~0.5.0",
-    "object-assign": "^2.0.0"
+    "object-assign": "^4.0.0"
   },
   "devDependencies": {
     "react": "~0.14.0",

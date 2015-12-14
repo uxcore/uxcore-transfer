@@ -135,6 +135,8 @@ class Transfer extends React.Component {
             return item.selected;
         }).map(function(item, index) {
             item.chosen = !item.chosen;
+            item.selected = false;
+            item.justMoved = true;
             return item;
         }).concat(arr2);
 
@@ -148,13 +150,28 @@ class Transfer extends React.Component {
         let me = this;
         if (me.props.disabled) return;
         let target = e.currentTarget;
-        let key = target.getAttribute('data-key');
-        let isChosen = JSON.parse(target.getAttribute('data-chosen'));
-        let newData = deepcopy(me.state[isChosen ? 'chosen' : 'unChosen']);
-        newData[key].selected = !newData[key].selected;
-        let newState = {};
-        newState[isChosen ? 'chosen' : 'unChosen'] = newData;
-        me.setState(newState);
+        me._removeJustMoved((target) => {
+            let key = target.getAttribute('data-key');
+            let isChosen = JSON.parse(target.getAttribute('data-chosen'));
+            let newData = deepcopy(me.state[isChosen ? 'chosen' : 'unChosen']);
+            newData[key].selected = !newData[key].selected;
+            let newState = {};
+            newState[isChosen ? 'chosen' : 'unChosen'] = newData;
+            me.setState(newState);
+        }.bind(me, target));
+    }
+
+    _removeJustMoved(cb) {
+        let data = deepcopy(this.state);
+        data.chosen.forEach((item, index) => {
+            item.justMoved = false;
+        });
+        data.unChosen.forEach((item, index) => {
+            item.justMoved = false;
+        });
+        me.setState(data, () => {
+            !!cb && cb(); 
+        });
     }
 
     _handleButtonClick(e) {
@@ -193,7 +210,8 @@ class Transfer extends React.Component {
         window.me = me;
         return <li key={index} data-key={index} data-value={item.value} data-chosen={item.chosen} onClick={me._handleItemClick.bind(me)}>
                     <a className={classnames({
-                       "selected": !!item.selected
+                       "selected": !!item.selected,
+                       "justMoved": !!item.justMoved
                     })} href="javascript:;" title={item.description}>{item.name}</a>
                </li>
     }
