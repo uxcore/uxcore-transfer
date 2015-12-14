@@ -1,4 +1,4 @@
-# 0.2.4
+# 0.2.5
 
 `CHANGED` items which has just been moved will not be selected.
 
