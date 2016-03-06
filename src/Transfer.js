@@ -152,7 +152,7 @@ class Transfer extends React.Component {
         let me = this;
         if (me.props.disabled) return;
         let target = e.currentTarget;
-        me._removeJustMoved((target) => {
+        me._removeJustMoved(((target) => {
             let key = target.getAttribute('data-key');
             let isChosen = JSON.parse(target.getAttribute('data-chosen'));
             let newData = deepcopy(me.state[isChosen ? 'chosen' : 'unChosen']);
@@ -160,7 +160,7 @@ class Transfer extends React.Component {
             let newState = {};
             newState[isChosen ? 'chosen' : 'unChosen'] = newData;
             me.setState(newState);
-        }.bind(me, target));
+        }).bind(me, target));
     }
 
     _removeJustMoved(cb) {
