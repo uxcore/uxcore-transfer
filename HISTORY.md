@@ -1,3 +1,7 @@
+# 0.2.6
+
+`CHANGED` update scaffold
+
 # 0.2.5
 
 `CHANGED` items which has just been moved will not be selected.

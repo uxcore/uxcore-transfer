@@ -1,5 +1,7 @@
 let classnames = require('classnames');
 let deepcopy = require('deepcopy');
+let React = require('react'); 
+let ReactDOM = require('react-dom');
 
 class Transfer extends React.Component {
     constructor(props){
