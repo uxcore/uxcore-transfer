@@ -65,6 +65,7 @@ class Transfer extends React.Component {
     }
 
     locateItem(value, position) {
+        if (!value && value != 0) {return; }
         let data = deepcopy( me.state[position] );
         let leftBlock = me.refs.leftBlock;
         let leftBlockEl = ReactDOM.findDOMNode(leftBlock);
@@ -90,16 +91,17 @@ class Transfer extends React.Component {
                 if (index != undefined) break;
             }
         }
-        if (index !== undefined && value !== '') {
-            data[index].justMoved = true;
-            if (position == 'unChosen') {
-                leftBlockEl.scrollTop = 30 * index;
-            }
-            else {
-                rightBlock.scrollTop = 30 * index;
-            }
+        //  
+        //if (index !== undefined && value !== '') {
+        data[index].justMoved = true;
+        if (position == 'unChosen') {
+            leftBlockEl.scrollTop = 30 * index;
         }
-        var obj ={};
+        else {
+            rightBlock.scrollTop = 30 * index;
+        }
+        //}
+        let obj ={};
         obj[position] = data;
         this.setState( obj );
     }
