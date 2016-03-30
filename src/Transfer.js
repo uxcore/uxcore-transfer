@@ -2,7 +2,6 @@ let classnames = require('classnames');
 let deepcopy = require('deepcopy');
 let React = require('react'); 
 let ReactDOM = require('react-dom');
-
 class Transfer extends React.Component {
     constructor(props){
         super(props);
@@ -66,12 +65,16 @@ class Transfer extends React.Component {
     }
 
     locateItem(value, position) {
-        let data = me.state[position];
+        if (!value && value != 0) {return; }
+        let data = deepcopy( me.state[position] );
         let leftBlock = me.refs.leftBlock;
         let leftBlockEl = ReactDOM.findDOMNode(leftBlock);
         let rightBlock = me.refs.rightBlock;
         let rightBlockEl = ReactDOM.findDOMNode(rightBlock);
         let index;
+        for (let i = 0; i < data.length; i++) {
+             data[i].justMoved = false;
+        }
         for (let i = 0; i < data.length; i++) {
             if (data[i].name.indexOf(value) !== -1) {
                 index = i;
@@ -88,14 +91,19 @@ class Transfer extends React.Component {
                 if (index != undefined) break;
             }
         }
-        if (index != undefined) {
-            if (position == 'unChosen') {
-                leftBlockEl.scrollTop = 30 * index;
-            }
-            else {
-                rightBlock.scrollTop = 30 * index;
-            }
+        //  
+        //if (index !== undefined && value !== '') {
+        data[index].justMoved = true;
+        if (position == 'unChosen') {
+            leftBlockEl.scrollTop = 30 * index;
         }
+        else {
+            rightBlock.scrollTop = 30 * index;
+        }
+        //}
+        let obj ={};
+        obj[position] = data;
+        this.setState( obj );
     }
 
     _handleSearchIconClick(position) {
