@@ -1,3 +1,9 @@
+# 0.2.8
+
+`CHANGED` new dev tool
+`CHANGED` highlight item when search
+`CHANGED` repository
+
 # 0.2.7
 
 `CHANGED` update scaffold
