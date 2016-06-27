@@ -3,34 +3,33 @@
 .kuma-uxtransfer-container {
     font-size: 12px;
     th {
-        padding: 15px 0;
-        line-height: 30px;
+        line-height: 28px;
+        font-weight: 400;
         > .title {
             float: left;
             padding: 0 10px;
-            background-color: #ffa200;
-            border-radius: 0 3px 3px 0;
-            color: #fff;
+            background-color: @basic-400;
+            color: @text-secondary-color;
         }
-        > .searchBar {
+        .check-all {
             float: right;
-            position: relative;
-            .kuma-icon {
-                position: absolute;
-                right: 28px;
-                color: #ccc;
-                top: 2px;
-                cursor:pointer;
-            }
-            .kuma-input {
-                margin-right: 20px;
-                width: 160px;
-                border-radius: @input-radius;
-            }
         }
         &.left-head, &.right-head {
             background-color: #fff;
-            border: 1px solid @table-border;
+        }
+    }
+    .searchBar {
+        position: relative;
+        .kuma-icon {
+            position: absolute;
+            right: 4px;
+            top: 2px;
+            color: @text-thirdary-color;
+            cursor: pointer;
+        }
+        .kuma-input {
+            height: 28px;
+            border-color: @border-color;
         }
     }
     td {
@@ -38,27 +37,22 @@
         vertical-align: top;
 
         &.left-block, &.right-block {
+            padding: 4px;
             background-color: #fff;
-            border-width: 0 1px 1px;
-            border-style: solid;
-            border-color: @table-border;
+            border: 1px solid @border-color;
         }
 
         .kuma-uxtransfer-block {
-            width: 300px;
             height: 300px;
-            padding: 5px 10px;
             overflow-x: hidden;
             overflow-y: auto;
             a {
                 display: block;
-                margin-bottom: 2px;
-                width: 280px;
-                height: 30px;
+                height: 24px;
                 padding: 0 10px;
+                line-height: 24px;
+                color: @text-primary-color;
                 overflow: hidden;
-                line-height: 30px;
-                color: #999;
                 &:hover,
                 &:focus {
                     outline: none;
@@ -67,10 +61,9 @@
                 }
                 &.selected {
                     position: relative;
-                    background-color: #f90;
-                    color: #fff;
+                    color: @brand-primary;
                     &:before {
-                        content: "\e601";
+                        content: "\e611";
                         display: block;
                         position: absolute;
                         right: 10px;
@@ -89,7 +82,7 @@
             }
         }
         &.kuma-uxtransfer-buttons {
-            width: 90px;
+            width: 40px;
             text-align: center;
             vertical-align: middle;
             line-height: 0;
@@ -97,29 +90,26 @@
             > a {
                 position: relative;
                 display: inline-block;
-                width: 30px;
-                height: 30px;
-                line-height: 29px;
-                border: 1px solid #ddd;
-                background-color: #fff;
+                width: 24px;
+                height: 24px;
+                line-height: 22px;
+                border: 1px solid @border-color;
+                background-color: @basic-600;
                 margin-bottom: 10px;
                 text-align: center;
                 color: #ccc;
                 &:hover, &:focus {
                     text-decoration: none;
                 }
-                &.enable:active, &:active {
-                    border-color: @brand-secondary;
-                    color: @brand-secondary;
-                }
                 &.enable {
+                    background-color: @brand-primary;
                     border-color: @brand-primary;
-                    color: @brand-primary;
+                    color: #fff;
                 }
                 &:before {
                     content: '\e615';
                     font-family: kuma!important;
-                    font-size: 24px;
+                    font-size: 16px;
                     -webkit-font-smoothing: antialiased;
                     -webkit-text-stroke-width: .2px;
                     -moz-osx-font-smoothing: grayscale;
@@ -135,13 +125,14 @@
 .uxTransfer.disabled {
     .kuma-uxtransfer-buttons {
         > a {
-            background: #ccc;
+            background: @bg-disabled-color;
+            border-color: @border-disabled-color;
             color: #fff;
         }
     }
     .kuma-uxtransfer-block {
         a.selected {
-            background: #ccc;
+            background: @bg-disabled-color;
         }
     }
 }

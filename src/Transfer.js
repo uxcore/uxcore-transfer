@@ -1,7 +1,8 @@
-let classnames = require('classnames');
-let deepcopy = require('deepcopy');
-let React = require('react'); 
-let ReactDOM = require('react-dom');
+import classnames from 'classnames';
+import deepcopy from 'deepcopy';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 class Transfer extends React.Component {
     constructor(props){
         super(props);
@@ -266,18 +267,19 @@ class Transfer extends React.Component {
                         <tr>
                             <th className="fn-clear left-head">
                                 <span className="title">{me.props.leftTitle}</span>
-                                {me._renderSearch("unChosen")}
+                                <a href="#" className="check-all" title={me.props.checkAllText}>{me.props.checkAllText}</a>
                             </th>
-                            <th>&nbsp;</th>
+                            <th></th>
                             <th className="fn-clear right-head">
                                 <span className="title">{me.props.rightTitle}</span>
-                                {me._renderSearch("chosen")}
+                                <a href="#" className="check-all" title={me.props.checkAllText}>{me.props.checkAllText}</a>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td className="left-block">
+                                {me._renderSearch("unChosen")}
                                 <ul ref="leftBlock" className={classnames({
                                     "kuma-uxtransfer-block": true
                                 })}>
@@ -298,6 +300,7 @@ class Transfer extends React.Component {
                                 })} onClick={me._handleButtonClick.bind(me)}></a>
                             </td>
                             <td className="right-block">
+                                {me._renderSearch("chosen")}
                                 <ul ref="rightBlock" className={classnames({
                                     "kuma-uxtransfer-block": true
                                 })}>
@@ -318,6 +321,7 @@ Transfer.defaultProps = {
     data: [],
     leftTitle: '未选中',
     rightTitle: '已选中',
+    checkAllText: '全选',
     disabled: false,
     showSearch: true,
     onChange: function() {}
@@ -329,6 +333,7 @@ Transfer.propTypes = {
     showSearch: React.PropTypes.bool,
     leftTitle: React.PropTypes.string,
     rightTitle: React.PropTypes.string,
+    checkAllText: React.PropTypes.string,
     onChange: React.PropTypes.func
 }
 
