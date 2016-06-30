@@ -1,3 +1,8 @@
+# 0.2.9
+
+`CHANGED` apply new style
+`CHANGED` add `height` props
+
 # 0.2.8
 
 `CHANGED` new dev tool

@@ -215,15 +215,37 @@ class Transfer extends React.Component {
 
     }
 
+    _handleCheckLeftAll(e) {
+        e.preventDefault();
+        let { unChosen } = this.state;
+        unChosen.forEach((d) => {
+            d.selected = true;
+        });
+        this.setState({
+            unChosen: unChosen 
+        });
+    }
+
+    _handleCheckRightAll(e) {
+        e.preventDefault();
+        let { chosen } = this.state;
+        chosen.forEach((d) => {
+            d.selected = true;
+        });
+        this.setState({
+            chosen: chosen 
+        });
+    }
+
     _renderItem(item, index) {
         let me = this;
         window.me = me;
         return <li key={index} data-key={index} data-value={item.value} data-chosen={item.chosen} onClick={me._handleItemClick.bind(me)}>
-                    <a className={classnames({
-                       "selected": !!item.selected,
-                       "justMoved": !!item.justMoved
-                    })} href="javascript:;" title={item.description}>{item.name}</a>
-               </li>
+            <a className={classnames({
+                "selected": !!item.selected,
+                "justMoved": !!item.justMoved
+            })} href="javascript:;" title={item.description}>{item.name}</a>
+        </li>
     }
 
     _renderUnchosen() {
@@ -257,6 +279,12 @@ class Transfer extends React.Component {
 
     render() {
         let me = this;
+        let style;
+        if (this.props.height) {
+            style = {
+                height: this.props.height - 38 - (this.props.showSearch ? 28: 0)
+            };
+        }
         return (
             <div className={classnames({
                 "uxTransfer": true,
@@ -267,12 +295,12 @@ class Transfer extends React.Component {
                         <tr>
                             <th className="fn-clear left-head">
                                 <span className="title">{me.props.leftTitle}</span>
-                                <a href="#" className="check-all" title={me.props.checkAllText}>{me.props.checkAllText}</a>
+                                <a href="#" className="check-all" title={me.props.checkAllText} onClick={this._handleCheckLeftAll.bind(this)}>{me.props.checkAllText}</a>
                             </th>
                             <th></th>
                             <th className="fn-clear right-head">
                                 <span className="title">{me.props.rightTitle}</span>
-                                <a href="#" className="check-all" title={me.props.checkAllText}>{me.props.checkAllText}</a>
+                                <a href="#" className="check-all" title={me.props.checkAllText} onClick={this._handleCheckRightAll.bind(this)}>{me.props.checkAllText}</a>
                             </th>
                         </tr>
                     </thead>
@@ -282,7 +310,7 @@ class Transfer extends React.Component {
                                 {me._renderSearch("unChosen")}
                                 <ul ref="leftBlock" className={classnames({
                                     "kuma-uxtransfer-block": true
-                                })}>
+                                })} style={style}>
                                     {me._renderUnchosen()}
                                 </ul>
                             </td>
@@ -303,7 +331,7 @@ class Transfer extends React.Component {
                                 {me._renderSearch("chosen")}
                                 <ul ref="rightBlock" className={classnames({
                                     "kuma-uxtransfer-block": true
-                                })}>
+                                })} style={style}>
                                     {me._renderChosen()}
                                 </ul>
                             </td>
@@ -317,6 +345,7 @@ class Transfer extends React.Component {
 
 Transfer.displayName = "Transfer";
 Transfer.defaultProps = {
+    height: 220,
     searchPlaceholder: '定位输入内容',
     data: [],
     leftTitle: '未选中',
@@ -327,6 +356,7 @@ Transfer.defaultProps = {
     onChange: function() {}
 };
 Transfer.propTypes = {
+    height: React.PropTypes.number,
     searchPlaceholder: React.PropTypes.string,
     data: React.PropTypes.array,
     disabled: React.PropTypes.bool,

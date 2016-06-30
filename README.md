@@ -82,6 +82,7 @@ class TransferDemo extends React.Component {
 
 |参数|类型|必需|默认值|说明|
 |---|----|---|----|---|
+|height|number|optional|220|transfer高度|
 |data|array|required|-|用于初始化 transfer 的数据，格式见 Usage，其中 name 和 value 字段必有|
 |disabled|boolean|optional|false|是否启用 disable 模式|
 |showSearch|boolean|optional|true|是否显示搜索条|
