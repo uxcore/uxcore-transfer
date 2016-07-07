@@ -1,4 +1,8 @@
-# 0.2.9
+# 0.3.1
+
+`FIXED` fix bug in locateItem and _removeJustMoved
+
+# 0.3.0
 
 `CHANGED` apply new style
 `CHANGED` add `height` props
