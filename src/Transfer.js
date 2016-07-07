@@ -66,6 +66,7 @@ class Transfer extends React.Component {
     }
 
     locateItem(value, position) {
+        let me = this;
         if (value === "") {
             return; 
         }
