@@ -66,6 +66,7 @@ class Transfer extends React.Component {
     }
 
     locateItem(value, position) {
+        let me = this;
         if (value === "") {
             return; 
         }
@@ -172,6 +173,7 @@ class Transfer extends React.Component {
     }
 
     _removeJustMoved(cb) {
+        let me = this;
         let data = deepcopy(this.state);
         data.chosen.forEach((item, index) => {
             item.justMoved = false;
