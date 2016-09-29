@@ -62,7 +62,8 @@ class Transfer extends React.Component {
         let me = this;
         me.setState({
             chosen: me.props.data.filter(function(item) {return !!item.chosen}),
-            unChosen: me.props.data.filter(function(item) {return !item.chosen})
+            unChosen: me.props.data.filter(function(item) {return !item.chosen}),
+            isAllSelected: {unChosen:false, chosen:false}
         });
     }
 
