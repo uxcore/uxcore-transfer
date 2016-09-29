@@ -10,7 +10,7 @@ for (let i = 0; i < len; i++) {
         description: '内容' + (i + 1) + '的描述',
         chosen: Math.random() * 2 > 1,
         keywords: ['neirong' + (i + 1)], // used in search & location
-        display: true    
+        display: true
     });
 }
 
