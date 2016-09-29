@@ -8,7 +8,8 @@ class Transfer extends React.Component {
         super(props);
         this.state = {
             chosen: props.data.filter(function(item) {return !!item.chosen}),
-            unChosen: props.data.filter(function(item) {return !item.chosen})
+            unChosen: props.data.filter(function(item) {return !item.chosen}),
+            isAllSelected: {unChosen:false, chosen:false}
         }
     }
 
@@ -107,6 +108,30 @@ class Transfer extends React.Component {
         this.setState( obj );
     }
 
+    filter(value, position){
+        let me = this;
+        let data = deepcopy( me.state[position] );
+
+        data.forEach((item) => {
+            item.display = true;
+
+            if (item.name.indexOf(value) == -1) {
+                item.display = false;
+
+                if(item.selected){
+                    if(item.selected == true){
+                        item.selected = false;
+                    }
+                }
+            }
+        });
+
+        let obj ={};
+        obj[position] = data;
+        this.setState( obj );
+
+    }
+
     _handleSearchIconClick(position) {
         let me = this;
         let leftSearch = me.refs.leftSearch;
@@ -118,7 +143,7 @@ class Transfer extends React.Component {
         else {
             value = rightSearch.value;
         }
-        me.locateItem(value, position);
+        me.props.filter ? me.filter(value, position) : me.locateItem(value, position);
 
     }
 
@@ -134,7 +159,7 @@ class Transfer extends React.Component {
             else {
                 value = rightSearch.value;
             }
-            me.locateItem(value, position);
+            me.props.filter ? me.filter(value, position) : me.locateItem(value, position);
         }
     }
 
@@ -208,9 +233,11 @@ class Transfer extends React.Component {
             newChosen = newData.arr2;
         }
 
+        //移动过后把全选状态还原
         me.setState({
             chosen: newChosen,
-            unChosen: newUnChosen
+            unChosen: newUnChosen,
+            isAllSelected: {unChosen:false, chosen:false}
         }, function() {
             me.props.onChange(me.state);
         });
@@ -220,8 +247,15 @@ class Transfer extends React.Component {
     _handleCheckLeftAll(e) {
         e.preventDefault();
         let { unChosen } = this.state;
+        let status = !this.state.isAllSelected['unChosen'];
+        this.state.isAllSelected['unChosen'] = !this.state.isAllSelected['unChosen'];
+
         unChosen.forEach((d) => {
-            d.selected = true;
+            //只有显示的数据才选中，不显示的不选中
+            if (d.display) {
+                d.selected = status;
+                d.justMoved = false;
+            }
         });
         this.setState({
             unChosen: unChosen 
@@ -231,8 +265,15 @@ class Transfer extends React.Component {
     _handleCheckRightAll(e) {
         e.preventDefault();
         let { chosen } = this.state;
+        let status = !this.state.isAllSelected['chosen'];
+        this.state.isAllSelected['chosen'] = !this.state.isAllSelected['chosen'];
+
         chosen.forEach((d) => {
-            d.selected = true;
+            //只有显示的数据才选中，不显示的不选中
+            if (d.display) {
+                d.selected = status;
+                d.justMoved = false;
+            }
         });
         this.setState({
             chosen: chosen 
@@ -245,7 +286,8 @@ class Transfer extends React.Component {
         return <li key={index} data-key={index} data-value={item.value} data-chosen={item.chosen} onClick={me._handleItemClick.bind(me)}>
             <a className={classnames({
                 "selected": !!item.selected,
-                "justMoved": !!item.justMoved
+                "justMoved": !!item.justMoved,
+                "hide": !item.display
             })} href="javascript:;" title={item.description}>{item.name}</a>
         </li>
     }
@@ -274,7 +316,7 @@ class Transfer extends React.Component {
             "chosen": "rightSearch"
         }
         return  <div className="searchBar">
-                    <input type="text" ref={map[position]} className="kuma-input" placeholder={me.props.searchPlaceholder} onKeyDown={me._handleSearch.bind(me, position)}/>
+                    <input type="text" ref={map[position]} className="kuma-input" placeholder={me.props.filter ? '搜索过滤内容' : me.props.searchPlaceholder} onKeyDown={me._handleSearch.bind(me, position)}/>
                     <i className="kuma-icon kuma-icon-search" onClick={me._handleSearchIconClick.bind(me, position)}></i>
                 </div>
     }
@@ -355,6 +397,7 @@ Transfer.defaultProps = {
     checkAllText: '全选',
     disabled: false,
     showSearch: true,
+    filter:false,
     onChange: function() {}
 };
 Transfer.propTypes = {
@@ -363,6 +406,7 @@ Transfer.propTypes = {
     data: React.PropTypes.array,
     disabled: React.PropTypes.bool,
     showSearch: React.PropTypes.bool,
+    filter: React.PropTypes.bool,
     leftTitle: React.PropTypes.string,
     rightTitle: React.PropTypes.string,
     checkAllText: React.PropTypes.string,
