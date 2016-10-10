@@ -6,6 +6,10 @@ import ReactDOM from 'react-dom';
 class Transfer extends React.Component {
     constructor(props){
         super(props);
+        //将所有数据添加属性display，置为true
+        props.data.forEach(function(item){
+            item.display = true;
+        });
         this.state = {
             chosen: props.data.filter(function(item) {return !!item.chosen}),
             unChosen: props.data.filter(function(item) {return !item.chosen}),
@@ -19,6 +23,10 @@ class Transfer extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         let me = this;
+        //将所有数据添加属性display，置为true
+        nextProps.data.forEach(function(item){
+            item.display = true;
+        });
         if (!me._isEqual(nextProps.data, me.props.data)) {
             me.setState({
                 chosen: nextProps.data.filter(function(item) {return !!item.chosen}),
