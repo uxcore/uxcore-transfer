@@ -31,8 +31,8 @@
   "console-polyfill": "^0.2.2",
   "es5-shim": "^4.5.8",
   "kuma-base": "1.x",
-  "react": "15.x",
-  "react-dom": "15.x",
+  "react": "0.14.x",
+  "react-dom": "0.14.x",
   "uxcore-button": "~0.4.5",
   "uxcore-kuma": "2.x",
   "uxcore-tools": "0.2.x"

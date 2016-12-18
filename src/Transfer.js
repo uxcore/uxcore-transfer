@@ -66,16 +66,17 @@ class Transfer extends React.Component {
     }
 
     locateItem(value, position) {
+        console.info(value,position);
         let me = this;
         if (value === "") {
-            return; 
+            return;
         }
         let data = deepcopy( me.state[position] );
         let leftBlock = me.refs.leftBlock;
         let leftBlockEl = ReactDOM.findDOMNode(leftBlock);
         let rightBlock = me.refs.rightBlock;
         let rightBlockEl = ReactDOM.findDOMNode(rightBlock);
-        let index;
+        let index=-1;
         for (let i = 0; i < data.length; i++) {
              data[i].justMoved = false;
         }
@@ -92,8 +93,12 @@ class Transfer extends React.Component {
                         break;
                     }
                 }
-                if (index != undefined) break;
+                if (index != -1) break;
             }
+        }
+
+        if(index==-1) {
+            return;
         }
         data[index].justMoved = true;
         if (position == 'unChosen') {
@@ -182,7 +187,7 @@ class Transfer extends React.Component {
             item.justMoved = false;
         });
         me.setState(data, () => {
-            !!cb && cb(); 
+            !!cb && cb();
         });
     }
 
@@ -224,7 +229,7 @@ class Transfer extends React.Component {
             d.selected = true;
         });
         this.setState({
-            unChosen: unChosen 
+            unChosen: unChosen
         });
     }
 
@@ -235,7 +240,7 @@ class Transfer extends React.Component {
             d.selected = true;
         });
         this.setState({
-            chosen: chosen 
+            chosen: chosen
         });
     }
 
