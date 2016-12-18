@@ -1,3 +1,7 @@
+# 0.3.2
+
+`FIXED` fix bug in locateItem, index do not match
+
 # 0.3.1
 
 `FIXED` fix bug in locateItem and _removeJustMoved
