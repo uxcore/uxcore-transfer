@@ -61,7 +61,7 @@ class TransferDemo extends React.Component {
         var me = this;
         return (
             <div>
-                <Transfer showSearch={true} disabled={me.state.disable} ref="transfer" data={this.state.data} onChange={me._handleChange.bind(me)}/>
+                <Transfer showSearch={true} filter={true} disabled={me.state.disable} ref="transfer" data={this.state.data} onChange={me._handleChange.bind(me)}/>
                 <div style={{marginTop: 20}}>
                     <Button onClick={me.handleClick.bind(me)}>手动更改被选中的项</Button>
                     <Button onClick={me.handleClick2.bind(me)}>更改 mode</Button>

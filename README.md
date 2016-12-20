@@ -57,7 +57,7 @@ class TransferDemo extends React.Component {
         var me = this;
         return (
             <div>
-                <Transfer showSearch={true} disabled={me.state.disable} ref="transfer" data={mockData} onChange={me._handleChange.bind(me)}/>
+                <Transfer showSearch={true} filter={true} disabled={me.state.disable} ref="transfer" data={mockData} onChange={me._handleChange.bind(me)}/>
                 <Button onClick={me.handleClick.bind(me)}>手动更改被选中的项</Button>
                 <Button onClick={me.handleClick2.bind(me)}>更改 mode</Button>
             </div>
@@ -86,6 +86,7 @@ class TransferDemo extends React.Component {
 |data|array|required|-|用于初始化 transfer 的数据，格式见 Usage，其中 name 和 value 字段必有|
 |disabled|boolean|optional|false|是否启用 disable 模式|
 |showSearch|boolean|optional|true|是否显示搜索条|
+|filter|boolean|optional|false|是否启用过滤数据功能|
 |searchPlaceholder|string|optional|定位输入内容||
 |leftTitle|string|optional|'未选中的'|左侧标题|
 |rightTitle|string|optional|'已选中的'|右侧标题|
