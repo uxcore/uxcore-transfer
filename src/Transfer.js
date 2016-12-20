@@ -353,7 +353,7 @@ class Transfer extends React.Component {
 Transfer.displayName = "Transfer";
 Transfer.defaultProps = {
     height: 220,
-    searchPlaceholder: '定位输入内容',
+    searchPlaceholder: '请输入搜索内容',
     data: [],
     leftTitle: '未选中',
     rightTitle: '已选中',

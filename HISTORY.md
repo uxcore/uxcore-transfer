@@ -1,3 +1,8 @@
+# 0.3.3
+
+* `CHANGED` fix table width to 380px
+* `CHANGED` search input placeholder
+
 # 0.3.2
 
 `FIXED` fix bug in locateItem, index do not match
