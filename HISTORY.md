@@ -1,3 +1,7 @@
+# 0.3.4
+
+* `CHANGED` remove head background color
+
 # 0.3.3
 
 * `CHANGED` fix table width to 380px
