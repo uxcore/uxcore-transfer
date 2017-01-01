@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-no-bind": "off",
+    "react/forbid-prop-types": "off"
+  }
+}
