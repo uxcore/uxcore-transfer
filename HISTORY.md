@@ -1,3 +1,7 @@
+# 0.3.5
+
+* `CHANGED` style change
+
 # 0.3.4
 
 * `CHANGED` remove head background color
