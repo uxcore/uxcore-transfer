@@ -2,35 +2,39 @@
 
 .kuma-uxtransfer-container {
     font-size: 12px;
-    width: 380px;
+    border-collapse: separate;
     th {
-        line-height: 28px;
         font-weight: 400;
+        padding: 16px 16px 6px 16px;
         > .title {
             float: left;
-            padding: 0 10px;
-            background-color: @basic-400;
-            color: @text-secondary-color;
+            color: @normal-alpha-4;
         }
         .check-all {
             float: right;
         }
-        // &.left-head, &.right-head {
-        //     background-color: #fff;
-        // }
+        &.left-head, &.right-head {
+            background-color: #fff;
+            border: 1px solid @normal-alpha-6;
+            border-bottom: 0;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
     }
     .searchBar {
         position: relative;
+        margin: 0 16px 10px 16px;
         .kuma-icon {
             position: absolute;
             right: 4px;
             top: 2px;
-            color: @text-thirdary-color;
+            color: @normal-alpha-4;
             cursor: pointer;
+            font-size: 14px;
         }
         .kuma-input {
-            height: 28px;
-            border-color: @border-color;
+            height: 24px;
+            border-color: @normal-alpha-5;
         }
     }
     td {
@@ -38,10 +42,12 @@
         vertical-align: top;
 
         &.left-block, &.right-block {
-            padding: 4px;
-            width: 170px;
+            width: 218px;
             background-color: #fff;
-            border: 1px solid @border-color;
+            border: 1px solid @normal-alpha-6;
+            border-top: 0;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
         }
 
         .kuma-uxtransfer-block {
@@ -49,10 +55,10 @@
             overflow-y: auto;
             a {
                 display: block;
-                height: 24px;
-                padding: 0 15px 0 10px;
-                line-height: 24px;
-                color: @text-primary-color;
+                height: 32px;
+                padding: 0 16px;
+                line-height: 32px;
+                color: @dark-alpha-3;
                 overflow: hidden;
                 &:hover,
                 &:focus {
@@ -62,9 +68,11 @@
                 }
                 &.selected {
                     position: relative;
-                    color: @brand-primary;
+                    color: @dark-alpha-2;
+                    background-color: #f7f7f7;
                     &:before {
                         content: "\e611";
+                        color: @brand-primary;
                         display: block;
                         position: absolute;
                         right: 5px;
@@ -91,14 +99,15 @@
             > a {
                 position: relative;
                 display: inline-block;
-                width: 24px;
-                height: 24px;
-                line-height: 22px;
-                border: 1px solid @border-color;
-                background-color: @basic-600;
-                margin-bottom: 10px;
+                width: 26px;
+                height: 26px;
+                line-height: 26px;
+                border: 1px solid @normal-alpha-5;
+                border-radius: 3px;
+                background-color: #FFF;
+                margin-bottom: 12px;
                 text-align: center;
-                color: #ccc;
+                color: @normal-alpha-4;
                 &:hover, &:focus {
                     text-decoration: none;
                 }
@@ -108,15 +117,15 @@
                     color: #fff;
                 }
                 &:before {
-                    content: '\e615';
+                    content: '\e6a6';
                     font-family: kuma!important;
-                    font-size: 16px;
+                    font-size: 12px;
                     -webkit-font-smoothing: antialiased;
                     -webkit-text-stroke-width: .2px;
                     -moz-osx-font-smoothing: grayscale;
                 }
                 &:first-child:before {
-                    content: '\e616';
+                    content: '\e6a4';
                 }
             }
         }
@@ -126,14 +135,12 @@
 .uxTransfer.disabled {
     .kuma-uxtransfer-buttons {
         > a {
-            background: @bg-disabled-color;
-            border-color: @border-disabled-color;
-            color: #fff;
+            background-color: #f7f7f7;
         }
     }
     .kuma-uxtransfer-block {
         a.selected {
-            background: @bg-disabled-color;
+            background-color: #f7f7f7;
         }
     }
 }
