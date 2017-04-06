@@ -102,10 +102,10 @@ class Transfer extends React.Component {
         }
         data[index].justMoved = true;
         if (position == 'unChosen') {
-            leftBlockEl.scrollTop = 30 * index;
+            leftBlockEl.scrollTop = 32 * index;
         }
         else {
-            rightBlock.scrollTop = 30 * index;
+            rightBlock.scrollTop = 32 * index;
         }
         let obj ={};
         obj[position] = data;
