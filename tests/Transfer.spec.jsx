@@ -51,13 +51,10 @@ describe('Transfer', () => {
   let instance;
 
   it('componentDidMount', () => {
-    const spy = sinon.spy(Transfer.prototype, 'componentDidMount');
     instance = mount(<Transfer />);
-    expect(Transfer.prototype.componentDidMount.calledOnce).to.equal(true);
-    spy.restore();
   });
 
-// https://github.com/airbnb/enzyme/blob/4d1517ab01c01011d7e7d1b4e9ae4201cd23268d/docs/api/ShallowWrapper/setProps.md
+// https://github.com/airbnb/enzytDidme/blob/4d1517ab01c01011d7e7d1b4e9ae4201cd23268d/docs/api/ShallowWrapper/setProps.md
   it('componentWillReceiveProps', () => {
     const spy = sinon.spy(Transfer.prototype, 'componentWillReceiveProps');
     instance = mount(<Transfer data={mockData1} />);
@@ -101,85 +98,85 @@ describe('Transfer', () => {
     spy.restore();
   });
 
-  it('_handleItemClick method', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleItemClick');
+  it('handleItemClick method', () => {
+    const spy = sinon.spy(Transfer.prototype, 'handleItemClick');
     instance = mount(<Transfer data={mockData1} disabled={false} />);
     instance.find('.kuma-uxtransfer-block li a').forEach((node) => {
       node.simulate('click');
     });
-    expect(Transfer.prototype._handleItemClick.called).to.equal(true);
-    expect(Transfer.prototype._handleItemClick.callCount).to.equal(instance.find('.kuma-uxtransfer-block li a').length);
+    expect(Transfer.prototype.handleItemClick.called).to.equal(true);
+    expect(Transfer.prototype.handleItemClick.callCount).to.equal(instance.find('.kuma-uxtransfer-block li a').length);
     spy.restore();
   });
 
   it('left click event', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleButtonClick');
+    const spy = sinon.spy(Transfer.prototype, 'handleButtonClick');
     instance = mount(<Transfer data={mockData3} disabled={false} />);
     instance.find('.left-block .kuma-input').node.value = '5';
     instance.find('[data-direction="left"]').simulate('click');
-    expect(Transfer.prototype._handleButtonClick.calledOnce).to.equal(true);
+    expect(Transfer.prototype.handleButtonClick.calledOnce).to.equal(true);
     spy.restore();
   });
 
   it('right click event', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleButtonClick');
+    const spy = sinon.spy(Transfer.prototype, 'handleButtonClick');
     // spy.withArgs('chosen');
     instance = mount(<Transfer data={mockData3} disabled={false} />);
     instance.find('.right-block .kuma-input').node.value = '6';
     instance.find('[data-direction="right"]').simulate('click', 'chosen');
-    expect(Transfer.prototype._handleButtonClick.calledOnce).to.equal(true);
+    expect(Transfer.prototype.handleButtonClick.calledOnce).to.equal(true);
     spy.restore();
   });
 
-  it('unChosen _handleSearchIconClick method', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleSearchIconClick');
+  it('unChosen handleSearchIconClick method', () => {
+    const spy = sinon.spy(Transfer.prototype, 'handleSearchIconClick');
     instance = mount(<Transfer data={mockData1} />);
     instance.find('.left-block .kuma-input').node.value = '7';
     instance.find('.left-block .kuma-icon-search').simulate('click', 'unChosen');
-    expect(Transfer.prototype._handleSearchIconClick.calledOnce).to.equal(true);
+    expect(Transfer.prototype.handleSearchIconClick.calledOnce).to.equal(true);
     spy.restore();
   });
 
-  it('chosen _handleSearchIconClick method', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleSearchIconClick');
+  it('chosen handleSearchIconClick method', () => {
+    const spy = sinon.spy(Transfer.prototype, 'handleSearchIconClick');
     instance = mount(<Transfer data={mockData1} />);
     instance.find('.right-block .kuma-input').node.value = '8';
     instance.find('.right-block .kuma-icon-search').simulate('click', 'chosen');
-    expect(Transfer.prototype._handleSearchIconClick.calledOnce).to.equal(true);
+    expect(Transfer.prototype.handleSearchIconClick.calledOnce).to.equal(true);
     spy.restore();
   });
 
 
-  it('left _handleSearch method', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleSearch');
+  it('left handleSearch method', () => {
+    const spy = sinon.spy(Transfer.prototype, 'handleSearch');
     instance = mount(<Transfer data={mockData1} />);
     instance.find('.left-block .kuma-input').simulate('keyDown', { keyCode: 13 });
-    expect(Transfer.prototype._handleSearch.calledOnce).to.equal(true);
+    expect(Transfer.prototype.handleSearch.calledOnce).to.equal(true);
     spy.restore();
   });
 
-  it('right _handleSearch method', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleSearch');
+  it('right handleSearch method', () => {
+    const spy = sinon.spy(Transfer.prototype, 'handleSearch');
     instance = mount(<Transfer data={mockData1} />);
     instance.find('.right-block .kuma-input').simulate('keyDown', { keyCode: 13 });
-    expect(Transfer.prototype._handleSearch.calledOnce).to.equal(true);
+    expect(Transfer.prototype.handleSearch.calledOnce).to.equal(true);
     spy.restore();
   });
 
 
   it('left  check-all', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleCheckLeftAll');
+    const spy = sinon.spy(Transfer.prototype, 'handleCheckLeftAll');
     instance = mount(<Transfer data={mockData1} />);
     instance.find('.left-head .check-all').simulate('click');
-    expect(Transfer.prototype._handleCheckLeftAll.calledOnce).to.equal(true);
+    expect(Transfer.prototype.handleCheckLeftAll.calledOnce).to.equal(true);
     spy.restore();
   });
 
   it('right  check-all', () => {
-    const spy = sinon.spy(Transfer.prototype, '_handleCheckRightAll');
+    const spy = sinon.spy(Transfer.prototype, 'handleCheckRightAll');
     instance = mount(<Transfer data={mockData1} />);
     instance.find('.right-head .check-all').simulate('click');
-    expect(Transfer.prototype._handleCheckRightAll.calledOnce).to.equal(true);
+    expect(Transfer.prototype.handleCheckRightAll.calledOnce).to.equal(true);
     spy.restore();
   });
 });

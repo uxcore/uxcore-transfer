@@ -245,7 +245,7 @@ class Transfer extends React.Component {
             selected: !!item.selected,
             justMoved: !!item.justMoved,
           })}
-          title={item.description}
+          title={item.description || item.name}
           onClick={preventDefaultClick}
         >{item.name}</a>
       </li>
@@ -293,7 +293,7 @@ class Transfer extends React.Component {
     let style;
     if (this.props.height) {
       style = {
-        height: this.props.height - 38 - (this.props.showSearch ? 28 : 0),
+        height: this.props.height - 41 - (this.props.showSearch ? 34 : 0),
       };
     }
     return (
@@ -372,7 +372,7 @@ class Transfer extends React.Component {
 
 Transfer.displayName = 'Transfer';
 Transfer.defaultProps = {
-  height: 220,
+  height: 280,
   searchPlaceholder: '请输入搜索内容',
   data: [],
   leftTitle: '未选中',
