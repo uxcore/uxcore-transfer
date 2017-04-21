@@ -1,3 +1,7 @@
+# 0.3.6
+
+* `CHANGED` eslint
+
 # 0.3.5
 
 * `CHANGED` style change
