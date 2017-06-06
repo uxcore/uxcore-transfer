@@ -1,4 +1,8 @@
-# 0.4.0
+# 0.3.10
+
+* `FIXED` text overflow style bug
+
+# 0.3.9
 
 * `CHANGED` eslint
 * `CHANGED` style change
