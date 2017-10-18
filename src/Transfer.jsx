@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import deepcopy from 'deepcopy';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
@@ -33,6 +34,11 @@ class Transfer extends React.Component {
     };
     this.refCbs = [];
     this.saveRef = this.saveRef.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
+    this.renderItem = this.renderItem.bind(this);
+    this.handleCheckLeftAll = this.handleCheckLeftAll.bind(this);
+    this.handleCheckRightAll = this.handleCheckRightAll.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -237,8 +243,11 @@ class Transfer extends React.Component {
     window.me = me;
     return (
       <li
-        key={index} data-key={index} data-value={item.value}
-        data-chosen={item.chosen} onClick={me.handleItemClick.bind(me)}
+        key={index}
+        data-key={index}
+        data-value={item.value}
+        data-chosen={item.chosen}
+        onClick={me.handleItemClick}
       >
         <a
           className={classnames({
@@ -254,13 +263,13 @@ class Transfer extends React.Component {
 
   renderUnchosen() {
     const me = this;
-    const arr = me.state.unChosen.filter(item => !item.chosen).map(me.renderItem.bind(me));
+    const arr = me.state.unChosen.filter(item => !item.chosen).map(me.renderItem);
     return arr;
   }
 
   renderChosen() {
     const me = this;
-    const arr = me.state.chosen.filter(item => item.chosen).map(me.renderItem.bind(me));
+    const arr = me.state.chosen.filter(item => item.chosen).map(me.renderItem);
     return arr;
   }
 
@@ -293,7 +302,7 @@ class Transfer extends React.Component {
     let style;
     if (this.props.height) {
       style = {
-        height: this.props.height - 41 - (this.props.showSearch ? 34 : 0),
+        height: `${this.props.height - 41 - (this.props.showSearch ? 34 : 0)}px`,
       };
     }
     return (
@@ -310,7 +319,8 @@ class Transfer extends React.Component {
                 <span className="title">{me.props.leftTitle}</span>
                 <a
                   className="check-all"
-                  title={me.props.checkAllText} onClick={this.handleCheckLeftAll.bind(this)}
+                  title={me.props.checkAllText}
+                  onClick={this.handleCheckLeftAll}
                 >{me.props.checkAllText}</a>
               </th>
               <th />
@@ -318,7 +328,8 @@ class Transfer extends React.Component {
                 <span className="title">{me.props.rightTitle}</span>
                 <a
                   className="check-all"
-                  title={me.props.checkAllText} onClick={this.handleCheckRightAll.bind(this)}
+                  title={me.props.checkAllText}
+                  onClick={this.handleCheckRightAll}
                 >{me.props.checkAllText}</a>
               </th>
             </tr>
@@ -331,7 +342,8 @@ class Transfer extends React.Component {
                   ref={this.saveRef('leftBlock')}
                   className={classnames({
                     'kuma-uxtransfer-block': true,
-                  })} style={style}
+                  })}
+                  style={style}
                 >
                   {me.renderUnchosen()}
                 </ul>
@@ -339,16 +351,20 @@ class Transfer extends React.Component {
               <td className="kuma-uxtransfer-buttons">
                 <a
                   href="#"
-                  data-direction="left" className={classnames({
+                  data-direction="left"
+                  className={classnames({
                     enable: me.state.chosen.some(item => !!item.selected) && !me.props.disabled,
-                  })} onClick={me.handleButtonClick.bind(me)}
+                  })}
+                  onClick={me.handleButtonClick}
                 />
                 <br />
                 <a
                   href="#"
-                  data-direction="right" className={classnames({
+                  data-direction="right"
+                  className={classnames({
                     enable: me.state.unChosen.some(item => !!item.selected) && !me.props.disabled,
-                  })} onClick={me.handleButtonClick.bind(me)}
+                  })}
+                  onClick={me.handleButtonClick}
                 />
               </td>
               <td className="right-block">
@@ -357,7 +373,8 @@ class Transfer extends React.Component {
                   ref={this.saveRef('rightBlock')}
                   className={classnames({
                     'kuma-uxtransfer-block': true,
-                  })} style={style}
+                  })}
+                  style={style}
                 >
                   {me.renderChosen()}
                 </ul>
@@ -383,15 +400,15 @@ Transfer.defaultProps = {
   onChange() { },
 };
 Transfer.propTypes = {
-  height: React.PropTypes.number,
-  searchPlaceholder: React.PropTypes.string,
-  data: React.PropTypes.array,
-  disabled: React.PropTypes.bool,
-  showSearch: React.PropTypes.bool,
-  leftTitle: React.PropTypes.string,
-  rightTitle: React.PropTypes.string,
-  checkAllText: React.PropTypes.string,
-  onChange: React.PropTypes.func,
+  height: PropTypes.number,
+  searchPlaceholder: PropTypes.string,
+  data: PropTypes.array,
+  disabled: PropTypes.bool,
+  showSearch: PropTypes.bool,
+  leftTitle: PropTypes.string,
+  rightTitle: PropTypes.string,
+  checkAllText: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 module.exports = Transfer;

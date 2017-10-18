@@ -1,6 +1,6 @@
-const Button = require('uxcore-button');
-const React = require('react');
-const Transfer = require('../src');
+import Button from 'uxcore-button';
+import React from 'react';
+import Transfer from '../src';
 
 const mockData = [];
 const len = (Math.random() * 10) + 40;
@@ -21,6 +21,11 @@ class TransferDemo extends React.Component {
       disable: false,
       data: mockData,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClick2 = this.handleClick2.bind(this);
+    this.handleClick3 = this.handleClick3.bind(this);
+    this.handleClick4 = this.handleClick4.bind(this);
   }
 
   handleChange(data) {
@@ -67,13 +72,13 @@ class TransferDemo extends React.Component {
           disabled={me.state.disable}
           ref={(c) => { this.ref = c; }}
           data={this.state.data}
-          onChange={me.handleChange.bind(me)}
+          onChange={me.handleChange}
         />
-        <div style={{ marginTop: 20 }}>
-          <Button onClick={me.handleClick.bind(me)}>手动更改被选中的项</Button>
-          <Button onClick={me.handleClick2.bind(me)}>更改 mode</Button>
-          <Button onClick={me.handleClick3.bind(me)}>更改 props</Button>
-          <Button onClick={me.handleClick4.bind(me)}>重置</Button>
+        <div style={{ marginTop: '20px' }}>
+          <Button onClick={me.handleClick}>手动更改被选中的项</Button>
+          <Button onClick={me.handleClick2}>更改 mode</Button>
+          <Button onClick={me.handleClick3}>更改 props</Button>
+          <Button onClick={me.handleClick4}>重置</Button>
         </div>
       </div>
     );
@@ -84,4 +89,4 @@ TransferDemo.displayName = 'TransferDemo';
 TransferDemo.defaultProps = {};
 TransferDemo.propTypes = {};
 
-module.exports = TransferDemo;
+export default TransferDemo;
