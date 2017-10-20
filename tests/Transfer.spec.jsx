@@ -85,7 +85,6 @@ describe('Transfer', () => {
   it('selectItems method', () => {
     const spy = sinon.spy(Transfer.prototype, 'selectItems');
     instance = mount(<Transfer data={mockData3} />);
-    window.instance = instance;
     const args = [2, 3];
     Transfer.prototype.selectItems.withArgs(args);
     instance.instance().selectItems(args);
