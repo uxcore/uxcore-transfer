@@ -1,10 +1,12 @@
 import expect from 'expect.js';
 import React from 'react';
-import { mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-15';
 import sinon from 'sinon';
 // http://sinonjs.org/docs/
 import Transfer from '../src';
 
+Enzyme.configure({ adapter: new Adapter() });
 
 const mockData1 = [];
 const mockData2 = [];
@@ -83,9 +85,10 @@ describe('Transfer', () => {
   it('selectItems method', () => {
     const spy = sinon.spy(Transfer.prototype, 'selectItems');
     instance = mount(<Transfer data={mockData3} />);
+    window.instance = instance;
     const args = [2, 3];
     Transfer.prototype.selectItems.withArgs(args);
-    instance.component.getInstance().selectItems(args);
+    instance.instance().selectItems(args);
     expect(Transfer.prototype.selectItems.withArgs(args).calledOnce).to.equal(true);
     spy.restore();
   });
@@ -93,7 +96,7 @@ describe('Transfer', () => {
   it('reset method', () => {
     const spy = sinon.spy(Transfer.prototype, 'reset');
     instance = mount(<Transfer data={mockData1} />);
-    instance.component.getInstance().reset();
+    instance.instance().reset();
     expect(Transfer.prototype.reset.calledOnce).to.equal(true);
     spy.restore();
   });
@@ -112,7 +115,7 @@ describe('Transfer', () => {
   it('left click event', () => {
     const spy = sinon.spy(Transfer.prototype, 'handleButtonClick');
     instance = mount(<Transfer data={mockData3} disabled={false} />);
-    instance.find('.left-block .kuma-input').node.value = '5';
+    instance.find('.left-block .kuma-input').instance().value = '5';
     instance.find('[data-direction="left"]').simulate('click');
     expect(Transfer.prototype.handleButtonClick.calledOnce).to.equal(true);
     spy.restore();
@@ -122,7 +125,7 @@ describe('Transfer', () => {
     const spy = sinon.spy(Transfer.prototype, 'handleButtonClick');
     // spy.withArgs('chosen');
     instance = mount(<Transfer data={mockData3} disabled={false} />);
-    instance.find('.right-block .kuma-input').node.value = '6';
+    instance.find('.right-block .kuma-input').instance().value = '6';
     instance.find('[data-direction="right"]').simulate('click', 'chosen');
     expect(Transfer.prototype.handleButtonClick.calledOnce).to.equal(true);
     spy.restore();
@@ -131,7 +134,7 @@ describe('Transfer', () => {
   it('unChosen handleSearchIconClick method', () => {
     const spy = sinon.spy(Transfer.prototype, 'handleSearchIconClick');
     instance = mount(<Transfer data={mockData1} />);
-    instance.find('.left-block .kuma-input').node.value = '7';
+    instance.find('.left-block .kuma-input').instance().value = '7';
     instance.find('.left-block .kuma-icon-search').simulate('click', 'unChosen');
     expect(Transfer.prototype.handleSearchIconClick.calledOnce).to.equal(true);
     spy.restore();
@@ -140,7 +143,7 @@ describe('Transfer', () => {
   it('chosen handleSearchIconClick method', () => {
     const spy = sinon.spy(Transfer.prototype, 'handleSearchIconClick');
     instance = mount(<Transfer data={mockData1} />);
-    instance.find('.right-block .kuma-input').node.value = '8';
+    instance.find('.right-block .kuma-input').instance().value = '8';
     instance.find('.right-block .kuma-icon-search').simulate('click', 'chosen');
     expect(Transfer.prototype.handleSearchIconClick.calledOnce).to.equal(true);
     spy.restore();
