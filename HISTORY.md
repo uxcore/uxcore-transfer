@@ -1,3 +1,8 @@
+
+## 0.3.11
+
+`CHANGED` fit React@15
+
 # 0.3.10
 
 * `FIXED` text overflow style bug
