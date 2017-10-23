@@ -3,4 +3,4 @@
 * @time:
 */
 
-module.exports = require('./Transfer');
+export default from './Transfer';
