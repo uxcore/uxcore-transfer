@@ -1,7 +1,11 @@
 
+## 0.3.12
+
+* `CHANGED` replace dependency `deepcopy` with `lodash/cloneDeep`
+
 ## 0.3.11
 
-`CHANGED` fit React@15
+* `CHANGED` fit React@15
 
 # 0.3.10
 

@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import deepcopy from 'deepcopy';
+import deepcopy from 'lodash/cloneDeep';
 import React from 'react';
 import PropTypes from 'prop-types';
 
