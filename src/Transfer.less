@@ -97,6 +97,15 @@
                 &.justMoved {
                     background-color: #f7f7f7;
                 }
+                &.disabled {
+                    opacity: 0.3;
+                    &:hover,
+                    &:focus {
+                        outline: none;
+                        background-color: transparent;
+                        text-decoration: none;
+                    }
+                }
             }
         }
         &.kuma-uxtransfer-buttons {

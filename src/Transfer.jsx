@@ -157,10 +157,13 @@ class Transfer extends React.Component {
     const me = this;
     if (me.props.disabled) return;
     const target = e.currentTarget;
+    const key = target.getAttribute('data-key');
+    const isChosen = JSON.parse(target.getAttribute('data-chosen'));
+    const newData = deepcopy(me.state[isChosen ? 'chosen' : 'unChosen']);
+    if (newData[key].disabled) {
+      return;
+    }
     me.removeJustMoved(() => {
-      const key = target.getAttribute('data-key');
-      const isChosen = JSON.parse(target.getAttribute('data-chosen'));
-      const newData = deepcopy(me.state[isChosen ? 'chosen' : 'unChosen']);
       newData[key].selected = !newData[key].selected;
       const newState = {};
       newState[isChosen ? 'chosen' : 'unChosen'] = newData;
@@ -219,7 +222,9 @@ class Transfer extends React.Component {
     const unChosen = deepcopy(this.state.unChosen);
     for (let i = 0; i < unChosen.length; i++) {
       const item = unChosen[i];
-      item.selected = true;
+      if (!item.disabled) {
+        item.selected = true;
+      }
     }
     this.setState({
       unChosen,
@@ -231,7 +236,9 @@ class Transfer extends React.Component {
     const chosen = deepcopy(this.state.chosen);
     for (let i = 0; i < chosen.length; i++) {
       const item = chosen[i];
-      item.selected = true;
+      if (!item.disabled) {
+        item.selected = true;
+      }
     }
     this.setState({
       chosen,
@@ -253,6 +260,7 @@ class Transfer extends React.Component {
           className={classnames({
             selected: !!item.selected,
             justMoved: !!item.justMoved,
+            disabled: !!item.disabled,
           })}
           title={item.description || item.name}
           onClick={preventDefaultClick}

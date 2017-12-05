@@ -27,7 +27,8 @@ for (let i = 0; i < len; i++) {
         value: (i + 1),
         description: '内容' + (i + 1) + '的描述',
         chosen: Math.random() * 2 > 1,
-        keywords: ['neirong' + (i + 1)] // used in search & location
+        keywords: ['neirong' + (i + 1)], // used in search & location
+        disabled: i > 15
     });
 }
 
@@ -73,8 +74,8 @@ class TransferDemo extends React.Component {
 
 ## API
 
-* selectItems(arr): 使对应 value 的变成高亮状态 (selected)。    
-参数：  
+* selectItems(arr): 使对应 value 的变成高亮状态 (selected)。
+参数：
     * arr `Array` 一个由 value 组成的数组。
 * reset(): 使 Transfer 回到与 data 对应的状态。
 
