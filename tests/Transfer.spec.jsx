@@ -19,6 +19,7 @@ for (let i = 0; i < len; i += 1) {
     keywords: ['内容7', '内容8'],
     description: `内容${i + 1}的描述`,
     chosen: Math.random() * 2 > 1,
+    disabled: i > 3,
   });
 
   mockData2.push({

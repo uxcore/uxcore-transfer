@@ -11,6 +11,7 @@ for (let i = 0; i < len; i++) {
     description: `内容${i + 1}的描述`,
     chosen: Math.random() * 2 > 1,
     keywords: [`neirong${i + 1}`], // used in search & location
+    disabled: i > 15,
   });
 }
 
@@ -33,7 +34,7 @@ class TransferDemo extends React.Component {
   }
 
   handleClick() {
-    this.transfer.selectItems([2, 3]);
+    this.ref.selectItems([2, 3]);
   }
 
   handleClick2() {
@@ -60,7 +61,7 @@ class TransferDemo extends React.Component {
   }
 
   handleClick4() {
-    this.transfer.reset();
+    this.ref.reset();
   }
 
   render() {
