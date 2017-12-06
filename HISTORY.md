@@ -1,3 +1,6 @@
+## 0.3.13
+
+* `CHANGED` add disabled option to transfer item
 
 ## 0.3.12
 
