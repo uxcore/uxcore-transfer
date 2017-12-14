@@ -1,3 +1,7 @@
+# 0.3.14
+
+* `FIXED` fix color to comply with design rules.
+
 ## 0.3.13
 
 * `CHANGED` add disabled option to transfer item
