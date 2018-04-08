@@ -1,3 +1,7 @@
+# 0.3.15
+
+* `FIXED` fix some styles not compatible with last design
+
 # 0.3.14
 
 * `FIXED` fix color to comply with design rules.

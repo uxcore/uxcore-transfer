@@ -1,6 +1,6 @@
 {
  "name": "uxcore-transfer",
- "version": "0.3.14",
+ "version": "0.3.15",
  "description": "transfer ui component for react",
  "main": "build/index.js",
  "scripts": {
