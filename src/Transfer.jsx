@@ -91,7 +91,6 @@ class Transfer extends React.Component {
   }
 
   locateItem(value, position) {
-    console.info(value, position);
     const me = this;
     if (value === '') {
       return;
@@ -298,7 +297,7 @@ class Transfer extends React.Component {
           onKeyDown={me.handleSearch.bind(me, position)}
         />
         <i
-          className="kuma-icon kuma-icon-search"
+          className="uxcore-icon uxicon-sousuo"
           onClick={me.handleSearchIconClick.bind(me, position)}
         />
       </div>

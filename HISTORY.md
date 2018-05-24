@@ -1,3 +1,8 @@
+# 0.3.16
+
+* `FIXED` #18
+* `FIXED` search icon changed to uxcore-sousuo
+
 # 0.3.15
 
 * `FIXED` fix some styles not compatible with last design
