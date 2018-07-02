@@ -1,7 +1,7 @@
 import expect from 'expect.js';
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 // http://sinonjs.org/docs/
 import Transfer from '../src';
@@ -58,12 +58,16 @@ describe('Transfer', () => {
   });
 
 // https://github.com/airbnb/enzytDidme/blob/4d1517ab01c01011d7e7d1b4e9ae4201cd23268d/docs/api/ShallowWrapper/setProps.md
-  it('componentWillReceiveProps', () => {
-    const spy = sinon.spy(Transfer.prototype, 'componentWillReceiveProps');
+  it('getDerivedStateFromProps', () => {
+    const spy = sinon.spy(Transfer, 'getDerivedStateFromProps');
     instance = mount(<Transfer data={mockData1} />);
-    expect(spy.calledOnce).to.equal(false);
-    instance.setProps({ data: mockData2 });
-    expect(spy.calledOnce).to.equal(true);
+    setTimeout(() => {
+      expect(spy.calledOnce).to.equal(true);
+      instance.setProps({ data: mockData2 });
+      setTimeout(() => {
+        expect(spy.calledTwice).to.equal(true);
+      }, 300);
+    }, 300);
     spy.restore();
   });
 
@@ -135,7 +139,7 @@ describe('Transfer', () => {
     const spy = sinon.spy(Transfer.prototype, 'handleSearchIconClick');
     instance = mount(<Transfer data={mockData1} />);
     instance.find('.left-block .kuma-input').instance().value = '7';
-    instance.find('.left-block .kuma-icon-search').simulate('click', 'unChosen');
+    instance.find('.left-block .uxicon-sousuo').simulate('click', 'unChosen');
     expect(Transfer.prototype.handleSearchIconClick.calledOnce).to.equal(true);
     spy.restore();
   });
@@ -144,7 +148,7 @@ describe('Transfer', () => {
     const spy = sinon.spy(Transfer.prototype, 'handleSearchIconClick');
     instance = mount(<Transfer data={mockData1} />);
     instance.find('.right-block .kuma-input').instance().value = '8';
-    instance.find('.right-block .kuma-icon-search').simulate('click', 'chosen');
+    instance.find('.right-block .uxicon-sousuo').simulate('click', 'chosen');
     expect(Transfer.prototype.handleSearchIconClick.calledOnce).to.equal(true);
     spy.restore();
   });

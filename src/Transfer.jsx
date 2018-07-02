@@ -2,8 +2,8 @@ import classnames from 'classnames';
 import deepcopy from 'lodash/cloneDeep';
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+import { polyfill } from 'react-lifecycles-compat';
+import isEqual from 'lodash/isEqual';
 
 const preventDefaultClick = (e) => {
   e.preventDefault();
@@ -26,11 +26,24 @@ const changeChosenData = (arr1, arr2) => {
 };
 
 class Transfer extends React.Component {
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!isEqual(nextProps.data, prevState.lastData)) {
+      return {
+        chosen: nextProps.data.filter(item => !!item.chosen),
+        unChosen: nextProps.data.filter(item => !item.chosen),
+        lastData: nextProps.data,
+      };
+    }
+    return null;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       chosen: props.data.filter(item => !!item.chosen),
       unChosen: props.data.filter(item => !item.chosen),
+      lastData: props.data,
     };
     this.refCbs = [];
     this.saveRef = this.saveRef.bind(this);
@@ -39,16 +52,6 @@ class Transfer extends React.Component {
     this.handleCheckLeftAll = this.handleCheckLeftAll.bind(this);
     this.handleCheckRightAll = this.handleCheckRightAll.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const me = this;
-    if (!isEqual(nextProps.data, me.props.data)) {
-      me.setState({
-        chosen: nextProps.data.filter(item => !!item.chosen),
-        unChosen: nextProps.data.filter(item => !item.chosen),
-      });
-    }
   }
 
   saveRef(name) {
@@ -417,5 +420,7 @@ Transfer.propTypes = {
   checkAllText: PropTypes.string,
   onChange: PropTypes.func,
 };
+
+polyfill(Transfer);
 
 module.exports = Transfer;
