@@ -1,3 +1,7 @@
+# 0.4.0
+
+* `CHANGED` fit React@16
+
 # 0.3.16
 
 * `FIXED` #18
