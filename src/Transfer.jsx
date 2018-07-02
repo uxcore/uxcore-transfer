@@ -3,9 +3,7 @@ import deepcopy from 'lodash/cloneDeep';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { polyfill } from 'react-lifecycles-compat';
-
-const isEqual = (a, b) => JSON.stringify((a || []).map(v => v.value)) ===
-  JSON.stringify((b || []).map(v => v.value));
+import isEqual from 'lodash/isEqual';
 
 const preventDefaultClick = (e) => {
   e.preventDefault();
@@ -29,14 +27,12 @@ const changeChosenData = (arr1, arr2) => {
 
 class Transfer extends React.Component {
 
-  static getDerivedStateFromProps(nextProps, nextState) {
-    const chosen = nextProps.data.filter(item => !!item.chosen);
-    const unChosen = nextProps.data.filter(item => !item.chosen);
-
-    if (!isEqual(chosen, nextState.chosen) || !isEqual(unChosen, nextState.unChosen)) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!isEqual(nextProps.data, prevState.lastData)) {
       return {
         chosen: nextProps.data.filter(item => !!item.chosen),
         unChosen: nextProps.data.filter(item => !item.chosen),
+        lastData: nextProps.data,
       };
     }
     return null;
@@ -47,6 +43,7 @@ class Transfer extends React.Component {
     this.state = {
       chosen: props.data.filter(item => !!item.chosen),
       unChosen: props.data.filter(item => !item.chosen),
+      lastData: props.data,
     };
     this.refCbs = [];
     this.saveRef = this.saveRef.bind(this);
