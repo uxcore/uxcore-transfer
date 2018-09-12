@@ -1,6 +1,8 @@
 import Button from 'uxcore-button';
 import React from 'react';
 import Transfer from '../src';
+import '../style';
+import 'kuma-base/core.less';
 
 const mockData = [];
 const len = (Math.random() * 10) + 40;
@@ -42,6 +44,7 @@ class TransferDemo extends React.Component {
       disable: !this.state.disable,
     });
   }
+
   handleClick3() {
     console.log('work');
     const mockData2 = [];
@@ -76,10 +79,18 @@ class TransferDemo extends React.Component {
           onChange={me.handleChange}
         />
         <div style={{ marginTop: '20px' }}>
-          <Button onClick={me.handleClick}>手动更改被选中的项</Button>
-          <Button onClick={me.handleClick2}>更改 mode</Button>
-          <Button onClick={me.handleClick3}>更改 props</Button>
-          <Button onClick={me.handleClick4}>重置</Button>
+          <Button onClick={me.handleClick}>
+手动更改被选中的项
+          </Button>
+          <Button onClick={me.handleClick2}>
+更改 mode
+          </Button>
+          <Button onClick={me.handleClick3}>
+更改 props
+          </Button>
+          <Button onClick={me.handleClick4}>
+重置
+          </Button>
         </div>
       </div>
     );

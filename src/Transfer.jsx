@@ -26,18 +26,6 @@ const changeChosenData = (arr1, arr2) => {
 };
 
 class Transfer extends React.Component {
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (!isEqual(nextProps.data, prevState.lastData)) {
-      return {
-        chosen: nextProps.data.filter(item => !!item.chosen),
-        unChosen: nextProps.data.filter(item => !item.chosen),
-        lastData: nextProps.data,
-      };
-    }
-    return null;
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -52,6 +40,17 @@ class Transfer extends React.Component {
     this.handleCheckLeftAll = this.handleCheckLeftAll.bind(this);
     this.handleCheckRightAll = this.handleCheckRightAll.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!isEqual(nextProps.data, prevState.lastData)) {
+      return {
+        chosen: nextProps.data.filter(item => !!item.chosen),
+        unChosen: nextProps.data.filter(item => !item.chosen),
+        lastData: nextProps.data,
+      };
+    }
+    return null;
   }
 
   saveRef(name) {
@@ -84,7 +83,6 @@ class Transfer extends React.Component {
   /**
    * 重置，取消所有的用户操作
    */
-
   reset() {
     const me = this;
     me.setState({
@@ -137,16 +135,9 @@ class Transfer extends React.Component {
   }
 
   handleSearchIconClick(position) {
-    const me = this;
-    const leftSearch = me.leftSearch;
-    const rightSearch = me.rightSearch;
-    let value = '';
-    if (position === 'unChosen') {
-      value = leftSearch.value;
-    } else {
-      value = rightSearch.value;
-    }
-    me.locateItem(value, position);
+    const { leftSearch, rightSearch } = this;
+    const { value } = position === 'unChosen' ? leftSearch : rightSearch;
+    this.locateItem(value, position);
   }
 
   handleSearch(position, e) {
@@ -266,7 +257,10 @@ class Transfer extends React.Component {
           })}
           title={item.description || item.name}
           onClick={preventDefaultClick}
-        >{item.name}</a>
+        >
+          {item.name}
+
+        </a>
       </li>
     );
   }
@@ -309,38 +303,48 @@ class Transfer extends React.Component {
 
   render() {
     const me = this;
+    const {
+      height, showSearch, leftTitle, disabled, rightTitle, checkAllText, prefixCls,
+    } = this.props;
     let style;
-    if (this.props.height) {
+    if (height) {
       style = {
-        height: `${this.props.height - 41 - (this.props.showSearch ? 34 : 0)}px`,
+        height: `${height - 41 - (showSearch ? 34 : 0)}px`,
       };
     }
     return (
       <div
-        className={classnames({
-          uxTransfer: true,
-          disabled: me.props.disabled,
+        className={classnames(prefixCls, {
+          disabled,
         })}
       >
-        <table className="kuma-uxtransfer-container">
-          <thead className="kuma-uxtransfer-head">
+        <table className={`${prefixCls}-container`}>
+          <thead className={`${prefixCls}-head`}>
             <tr>
               <th className="fn-clear left-head">
-                <span className="title">{me.props.leftTitle}</span>
+                <span className="title">
+                  {leftTitle}
+                </span>
                 <a
                   className="check-all"
-                  title={me.props.checkAllText}
+                  title={checkAllText}
                   onClick={this.handleCheckLeftAll}
-                >{me.props.checkAllText}</a>
+                >
+                  {checkAllText}
+                </a>
               </th>
               <th />
               <th className="fn-clear right-head">
-                <span className="title">{me.props.rightTitle}</span>
+                <span className="title">
+                  {rightTitle}
+                </span>
                 <a
                   className="check-all"
-                  title={me.props.checkAllText}
+                  title={checkAllText}
                   onClick={this.handleCheckRightAll}
-                >{me.props.checkAllText}</a>
+                >
+                  {checkAllText}
+                </a>
               </th>
             </tr>
           </thead>
@@ -350,20 +354,18 @@ class Transfer extends React.Component {
                 {me.renderSearch('unChosen')}
                 <ul
                   ref={this.saveRef('leftBlock')}
-                  className={classnames({
-                    'kuma-uxtransfer-block': true,
-                  })}
+                  className={`${prefixCls}-block`}
                   style={style}
                 >
                   {me.renderUnchosen()}
                 </ul>
               </td>
-              <td className="kuma-uxtransfer-buttons">
+              <td className={`${prefixCls}-buttons`}>
                 <a
                   href="#"
                   data-direction="left"
                   className={classnames({
-                    enable: me.state.chosen.some(item => !!item.selected) && !me.props.disabled,
+                    enable: me.state.chosen.some(item => !!item.selected) && !disabled,
                   })}
                   onClick={me.handleButtonClick}
                 />
@@ -372,7 +374,7 @@ class Transfer extends React.Component {
                   href="#"
                   data-direction="right"
                   className={classnames({
-                    enable: me.state.unChosen.some(item => !!item.selected) && !me.props.disabled,
+                    enable: me.state.unChosen.some(item => !!item.selected) && !disabled,
                   })}
                   onClick={me.handleButtonClick}
                 />
@@ -381,9 +383,7 @@ class Transfer extends React.Component {
                 {me.renderSearch('chosen')}
                 <ul
                   ref={this.saveRef('rightBlock')}
-                  className={classnames({
-                    'kuma-uxtransfer-block': true,
-                  })}
+                  className={`${prefixCls}-block`}
                   style={style}
                 >
                   {me.renderChosen()}
@@ -408,6 +408,7 @@ Transfer.defaultProps = {
   disabled: false,
   showSearch: true,
   onChange() { },
+  prefixCls: 'kuma-uxtransfer',
 };
 Transfer.propTypes = {
   height: PropTypes.number,
@@ -419,6 +420,7 @@ Transfer.propTypes = {
   rightTitle: PropTypes.string,
   checkAllText: PropTypes.string,
   onChange: PropTypes.func,
+  prefixCls: PropTypes.string,
 };
 
 polyfill(Transfer);

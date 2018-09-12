@@ -1,6 +1,7 @@
 /* alinw.transfer style module */
+@__transferPrefixCls: kuma-uxtransfer;
 
-.kuma-uxtransfer-container {
+.@{__transferPrefixCls}-container {
     font-size: 12px;
     border-collapse: separate;
     display: inline-block;
@@ -57,7 +58,7 @@
             border-bottom-right-radius: 3px;
         }
 
-        .kuma-uxtransfer-block {
+        .@{__transferPrefixCls}-block {
             overflow-x: hidden;
             overflow-y: auto;
             a {
@@ -108,7 +109,7 @@
                 }
             }
         }
-        &.kuma-uxtransfer-buttons {
+        &.@{__transferPrefixCls}-buttons {
             width: 44px;
             text-align: center;
             vertical-align: middle;
@@ -151,13 +152,13 @@
     }
 }
 
-.uxTransfer.disabled {
-    .kuma-uxtransfer-buttons {
+.@{__transferPrefixCls}.disabled {
+    .@{__transferPrefixCls}-buttons {
         > a {
             background-color: #f7f7f7;
         }
     }
-    .kuma-uxtransfer-block {
+    .@{__transferPrefixCls}-block {
         a.selected {
             background-color: #f7f7f7;
         }
