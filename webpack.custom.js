@@ -10,7 +10,10 @@ module.exports = (config) => {
         {
           loader: 'less-loader',
           options: {
-            modifyVars,
+            modifyVars: {
+              ...modifyVars,
+              // '@__transferPrefixCls': 'test',
+            },
           },
         },
       ];
