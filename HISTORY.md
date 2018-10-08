@@ -1,3 +1,7 @@
+# 0.4.2
+
+* `CHANGED` style adjustment
+
 # 0.4.1
 
 `CHANGED` support js style export

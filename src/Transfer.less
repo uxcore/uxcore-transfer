@@ -2,6 +2,12 @@
 @__transferPrefixCls: kuma-uxtransfer;
 
 .@{__transferPrefixCls}-container {
+    box-sizing: border-box;
+    * {
+        &, &:after, &:before {
+            box-sizing: inherit;
+        }
+    }
     font-size: 12px;
     border-collapse: separate;
     display: inline-block;
@@ -9,11 +15,11 @@
     th {
         font-weight: 400;
         width: 44px;
-        padding: 16px 16px 6px 16px;
+        padding: 16px 12px 6px;
         display: inline-block;
         > .title {
             float: left;
-            color: @normal-alpha-4;
+            color: @dark-3;
         }
         .check-all {
             float: right;
@@ -64,9 +70,9 @@
             a {
                 display: block;
                 height: 32px;
-                padding: 0 20px 0 16px;
+                padding: 0 12px;
                 line-height: 32px;
-                color: @dark-alpha-3;
+                color: @dark-3;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;

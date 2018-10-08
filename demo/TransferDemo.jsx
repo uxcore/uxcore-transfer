@@ -80,16 +80,16 @@ class TransferDemo extends React.Component {
         />
         <div style={{ marginTop: '20px' }}>
           <Button onClick={me.handleClick}>
-手动更改被选中的项
+            手动更改被选中的项
           </Button>
           <Button onClick={me.handleClick2}>
-更改 mode
+            更改 mode
           </Button>
           <Button onClick={me.handleClick3}>
-更改 props
+            更改 props
           </Button>
           <Button onClick={me.handleClick4}>
-重置
+            重置
           </Button>
         </div>
       </div>
