@@ -362,7 +362,6 @@ class Transfer extends React.Component {
               </td>
               <td className={`${prefixCls}-buttons`}>
                 <a
-                  href="#"
                   data-direction="left"
                   className={classnames({
                     enable: me.state.chosen.some(item => !!item.selected) && !disabled,
@@ -371,7 +370,6 @@ class Transfer extends React.Component {
                 />
                 <br />
                 <a
-                  href="#"
                   data-direction="right"
                   className={classnames({
                     enable: me.state.unChosen.some(item => !!item.selected) && !disabled,

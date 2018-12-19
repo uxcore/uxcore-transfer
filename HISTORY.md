@@ -1,3 +1,7 @@
+# 0.4.3
+
+* `FIXED` #23
+
 # 0.4.2
 
 * `CHANGED` style adjustment
