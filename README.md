@@ -91,3 +91,4 @@ class TransferDemo extends React.Component {
 |leftTitle|string|optional|'未选中的'|左侧标题|
 |rightTitle|string|optional|'已选中的'|右侧标题|
 |onChange|func|optional|noop|选中情况变化时触发，返回选中和未选中的项|
+|isAsc|boolean|optional|false|是否让新穿梭的值排在尾部|
