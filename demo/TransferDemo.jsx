@@ -13,7 +13,7 @@ for (let i = 0; i < len; i++) {
     description: `内容${i + 1}的描述`,
     chosen: Math.random() * 2 > 1,
     keywords: [`neirong${i + 1}`], // used in search & location
-    disabled: i > 15,
+    // disabled: i > 15,
   });
 }
 
@@ -77,7 +77,6 @@ class TransferDemo extends React.Component {
           ref={(c) => { this.ref = c; }}
           data={this.state.data}
           onChange={me.handleChange}
-          isAsc
         />
         <div style={{ marginTop: '20px' }}>
           <Button onClick={me.handleClick}>
