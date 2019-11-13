@@ -77,6 +77,7 @@ class TransferDemo extends React.Component {
           ref={(c) => { this.ref = c; }}
           data={this.state.data}
           onChange={me.handleChange}
+          isAsc
         />
         <div style={{ marginTop: '20px' }}>
           <Button onClick={me.handleClick}>

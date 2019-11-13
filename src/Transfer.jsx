@@ -9,16 +9,16 @@ const preventDefaultClick = (e) => {
   e.preventDefault();
 };
 
-const changeChosenData = (arr1, arr2) => {
+const changeChosenData = (arr1, arr2, isAsc) => {
   const newArr1 = arr1.filter(item => !item.selected);
-  const newArr2 = arr1.filter(item => item.selected).map((item) => {
+  let newArr2 = arr1.filter(item => item.selected).map((item) => {
     const newItem = deepcopy(item);
     newItem.chosen = !newItem.chosen;
     newItem.selected = false;
     newItem.justMoved = true;
     return newItem;
-  }).concat(arr2);
-
+  });
+  newArr2 = isAsc ? arr2.concat(newArr2) : newArr2.concat(arr2);
   return {
     arr1: newArr1,
     arr2: newArr2,
@@ -193,11 +193,11 @@ class Transfer extends React.Component {
     let newUnChosen = [];
     let newData = {};
     if (direction === 'left') {
-      newData = changeChosenData(oldChosen, oldUnChosen);
+      newData = changeChosenData(oldChosen, oldUnChosen, me.props.isAsc);
       newChosen = newData.arr1;
       newUnChosen = newData.arr2;
     } else {
-      newData = changeChosenData(oldUnChosen, oldChosen);
+      newData = changeChosenData(oldUnChosen, oldChosen, me.props.isAsc);
       newUnChosen = newData.arr1;
       newChosen = newData.arr2;
     }
@@ -407,6 +407,7 @@ Transfer.defaultProps = {
   showSearch: true,
   onChange() { },
   prefixCls: 'kuma-uxtransfer',
+  isAsc: false,
 };
 Transfer.propTypes = {
   height: PropTypes.number,
@@ -419,6 +420,7 @@ Transfer.propTypes = {
   checkAllText: PropTypes.string,
   onChange: PropTypes.func,
   prefixCls: PropTypes.string,
+  isAsc: PropTypes.bool,
 };
 
 polyfill(Transfer);
